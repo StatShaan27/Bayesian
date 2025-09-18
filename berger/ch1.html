@@ -66,7 +66,7 @@
       <li><a href="#3">3. Grappling with the Tension between Decision Theory and Statistical Inference</a></li>
       <li><a href="#4">4. Concept of Bayesian Expected Loss</a></li>
       <li><a href="#4">5. Solving the Drug Demand Example</a></li>
-      <li><a href="#4">4. Concept of Bayesian Expected Loss</a></li>
+      <li><a href="#4">6. Frequentist Risk</a></li>
       <li><a href="#4">4. Concept of Bayesian Expected Loss</a></li>
       <li><a href="#4">4. Concept of Bayesian Expected Loss</a></li>
       <li><a href="#4">4. Concept of Bayesian Expected Loss</a></li>
@@ -592,8 +592,106 @@
 
 
 
-  <div class="chapter-section" id="0">
-    
+  <div class="chapter-section" id="6">
+    <section>
+  <h4>1. Decision Rule</h4>
+  <ul>
+    <li>A <strong>decision rule</strong> \(\delta(X)\) is a function mapping observed data \(X\) to an action \(a \in \mathcal{A}\):
+      \[
+      \delta: \mathcal{X} \to \mathcal{A}, \quad a = \delta(X)
+      \]
+    </li>
+    <li>In <strong>no-data problems</strong>, a decision rule is simply an action.</li>
+    <li>Two rules are <strong>equivalent</strong> if they give the same action for all \(X\) under every possible \(\theta\).</li>
+    <li>Example 1 (Drug demand): \(\delta(X) = X/n\) (sample proportion), does not use loss or prior.</li>
+    <li>Example 2 (Transistor shipment):
+      \[
+      \delta(X) = 
+      \begin{cases} 
+      a_1 & \text{if } X/n \le 0.05 \\ 
+      a_2 & \text{if } X/n > 0.05
+      \end{cases}
+      \]
+    </li>
+  </ul>
+
+  <h4>2. Frequentist Risk Function</h4>
+  <ul>
+    <li>In the frequentist approach, \(\theta\) is fixed but unknown.</li>
+    <li>Risk of a decision rule \(\delta\) is the expected loss over all possible data \(X\) given \(\theta\):
+      \[
+      R(\theta, \delta) = \mathbb{E}_\theta [L(\theta, \delta(X))] = \int L(\theta, \delta(x)) \, dP_\theta(x)
+      \]
+    </li>
+    <li>Intuition: average loss if applying \(\delta(X)\) repeatedly on samples drawn from \(\theta\).</li>
+    <li>Contrast with Bayesian expected loss:
+      <ul>
+        <li>Bayesian: average over \(\theta\) (posterior).</li>
+        <li>Frequentist: average over \(X\) (data) with \(\theta\) fixed.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h4>3. Comparing Decision Rules</h4>
+  <ul>
+    <li><strong>Partial ordering via risk:</strong>
+      <ul>
+        <li>\(\delta_1\) is R-better than \(\delta_2\) if \(R(\theta, \delta_1) \le R(\theta, \delta_2)\) for all \(\theta\), with strict inequality for some \(\theta\).</li>
+        <li>R-equivalent: risks are equal for all \(\theta\).</li>
+      </ul>
+    </li>
+    <li><strong>Admissibility:</strong>
+      <ul>
+        <li>A rule \(\delta\) is admissible if no other rule has uniformly smaller risk.</li>
+        <li>Inadmissible: some other rule is strictly better in risk for at least one \(\theta\).</li>
+        <li>Many admissible rules exist; their risks may cross across \(\theta\).</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h4>4. Visualization Idea</h4>
+  <p>
+    θ fixed (unknown)<br>
+    &nbsp;&nbsp;&nbsp;↓<br>
+    Decision rule δ(X) → action a<br>
+    &nbsp;&nbsp;&nbsp;↓<br>
+    Data X ~ Pθ  → distribution of X<br>
+    &nbsp;&nbsp;&nbsp;↓<br>
+    Compute expected loss over X → Risk R(θ, δ)
+  </p>
+  <p>Unlike Bayesian expected loss (single number per action), frequentist risk is a function over θ, showing performance across all possible states of nature.</p>
+
+  <h4>5. Intuition</h4>
+  <ul>
+    <li>Bayesian: choose action minimizing <strong>average loss over θ</strong> given current belief.</li>
+    <li>Frequentist: choose rule minimizing <strong>average loss over repeated samples X</strong> for every true θ.</li>
+    <li>Admissibility ensures no other rule is uniformly better.</li>
+  </ul>
+
+  <h4>Decision Rule as a Statistic</h4>
+  <ul>
+    <li>A decision rule \(\delta(X)\) maps data \(X\) to an action \(a \in \mathcal{A}\).</li>
+    <li>Since \(\delta(X)\) depends <strong>only on observed data</strong>, it is a <strong>function of the sample</strong>.</li>
+    <li>Formally, a statistic is any measurable function of the data, so every decision rule is technically a statistic.</li>
+    <li>Not every statistic is a decision rule:
+      <ul>
+        <li>Example: sample mean \(\bar{X}\) is a statistic.</li>
+        <li>Becomes a decision rule when mapped to an action:
+          \[
+          \delta(X) = 
+          \begin{cases} 
+          \text{accept} & \bar{X} \le 0.05 \\ 
+          \text{reject} & \bar{X} > 0.05
+          \end{cases}
+          \]
+        </li>
+      </ul>
+    </li>
+    <li>Intuition: statistic summarizes the data; decision rule uses that summary to make a choice. Estimators themselves are decision rules mapping data to an estimate.</li>
+  </ul>
+  <p>In short: <strong>decision rule \(\delta(X)\) is a statistic because it is a function of the sample.</strong></p>
+</section>
+
   </div>
 
 
