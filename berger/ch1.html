@@ -69,7 +69,7 @@
       <li><a href="#6">6. Frequentist Risk</a></li>
       <li><a href="#7">7. Frequentist Risk in the Drug Demand Problem</a></li>
       <li><a href="#8">8. Example: Frequentist Risk for Scaled Normal Estimators</a></li>
-      <li><a href="#9">4. Concept of Bayesian Expected Loss</a></li>
+      <li><a href="#9">9. Finite Risk Decision & Bayes Risk</a></li>
       <li><a href="#10">4. Concept of Bayesian Expected Loss</a></li>
       <li><a href="#11">4. Concept of Bayesian Expected Loss</a></li>
       <li><a href="#12">4. Concept of Bayesian Expected Loss</a></li>
@@ -960,9 +960,55 @@
 
 
 
-  <div class="chapter-section" id="0">
-  
-</div>
+  <div class="chapter-section" id="9">
+    <section>
+  <h4>1. Finite Risk Decision Rules</h4>
+  <ul>
+    <li>Consider only decision rules with finite risk:
+      \[
+      \mathcal{D} = \{\delta : R(\theta, \delta) < \infty \text{ for all } \theta \in \Theta\}
+      \]
+    </li>
+    <li>This avoids pathological cases with infinite risk and simplifies analysis.</li>
+  </ul>
+
+  <h4>2. Bayes Risk</h4>
+  <ul>
+    <li>Bayes risk averages the frequentist risk over a prior \(\pi(\theta)\):
+      \[
+      r(\pi, \delta) = \mathbb{E}_\pi [R(\theta, \delta)] = \int_\Theta R(\theta, \delta) \, \pi(\theta) \, d\theta
+      \]
+      </li>
+    <li>This represents the expected loss averaging over both the unknown parameter \(\theta\) and the random sample \(X\).</li>
+  </ul>
+
+  <h4>3. Example (Normal case)</h4>
+  <ul>
+    <li>Parameter prior: \(\theta \sim N(0, \tau^2)\)</li>
+    <li>Decision rule: \(\delta_c(X) = c X\)</li>
+    <li>Frequentist risk:
+      \[
+      R(\theta, \delta_c) = c^2 + (1-c)^2 \theta^2
+      \]
+    </li>
+    <li>Bayes risk:
+      \[
+      r(\pi, \delta_c) = \mathbb{E}_\pi[R(\theta, \delta_c)] = c^2 + (1-c)^2 \mathbb{E}[\theta^2] = c^2 + (1-c)^2 \tau^2
+      \]
+    </li>
+    <li>Interpretation: Bayes risk accounts for uncertainty in \(\theta\) via the prior, giving a single summary number for the rule's expected performance.</li>
+  </ul>
+
+  <h4>4. Key Points</h4>
+  <ul>
+    <li>Finite risk ensures decision rules are reasonable.</li>
+    <li>Frequentist risk depends on the true parameter \(\theta\).</li>
+    <li>Bayes risk averages frequentist risk over a prior \(\pi(\theta)\) to give a single expected performance measure.</li>
+    <li>Bayes risk is central in Bayesian decision theory and often guides selection of optimal rules under a prior.</li>
+  </ul>
+</section>
+
+  </div>
 
 
 
