@@ -62,8 +62,8 @@
     <h3>Contents</h3>
     <ul>
       <li><a href="#1">1. Introduction to Basic Elements </a></li>
-      <li><a href="#2">2. Prior, Likelihood, and Posterior</a></li>
-      <li><a href="#3">3. Decision Theory Basics</a></li>
+      <li><a href="#2">2. Two concrete examples of Decision problems</a></li>
+      <li><a href="#3">3. Grappling with the Tension between Decision Theory and Statistical Inference</a></li>
       <li><a href="#4">4. Examples and Applications</a></li>
     </ul>
   </div>
@@ -154,7 +154,115 @@
 
   
   <div class="chapter-section" id="2">
-   
+   <section>
+  <h4>Example 1: Estimating drug demand</h4>
+  <ul>
+    <li><strong>State of nature:</strong>
+      <ul>
+        <li>The unknown quantity is \(\theta_2\), the proportion of people who would buy the new drug.</li>
+        <li>Parameter space: \(\Theta = [0,1]\) because proportions must lie between 0 and 1.</li>
+      </ul>
+    </li>
+    <li><strong>Action:</strong>
+      <ul>
+        <li>The action is choosing an estimate \(a\) for \(\theta_2\).</li>
+        <li>Action space: \(\mathcal{A} = [0,1]\).</li>
+      </ul>
+    </li>
+    <li><strong>Loss function:</strong>
+      <ul>
+        <li>Asymmetric linear loss:
+          \[
+          L(\theta_2, a) =
+          \begin{cases}
+          \theta_2 - a & \text{if } \theta_2 - a \ge 0 \quad \text{(underestimate)} \\
+          2(a - \theta_2) & \text{if } \theta_2 - a < 0 \quad \text{(overestimate)}
+          \end{cases}
+          \]</li>
+        <li>Overestimating demand is twice as costly as underestimating.</li>
+        <li>Loss measured in “utility units.”</li>
+      </ul>
+    </li>
+    <li><strong>Experiment / Observations:</strong>
+      <ul>
+        <li>Sample survey of \(n\) people, observing \(X\) who would buy the drug.</li>
+        <li>Model: \(X \sim \text{Binomial}(n, \theta_2)\).</li>
+      </ul>
+    </li>
+    <li><strong>Prior information:</strong>
+      <ul>
+        <li>Historical data suggest new drugs capture 10–20% of the market.</li>
+        <li>Uniform prior: \(\pi(\theta_2) = \text{Uniform}(0.1, 0.2)\).</li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>Visualization:</strong></p>
+  <p>
+    True demand \(\theta_2 \in [0,1]\)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+    Sample survey → \(X \sim \text{Binomial}(n, \theta_2)\)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+    Choose estimate \(a \in [0,1]\)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+    Compute loss \(L(\theta_2, a)\) (asymmetric)
+  </p>
+
+  <h4>Example 2: Accepting/rejecting transistor shipment</h4>
+  <ul>
+    <li><strong>State of nature:</strong>
+      <ul>
+        <li>The unknown proportion of defective transistors: \(\theta = e\).</li>
+        <li>Parameter space: \(\Theta = [0,1]\).</li>
+      </ul>
+    </li>
+    <li><strong>Actions:</strong>
+      <ul>
+        <li>\(a_1 =\) accept the shipment</li>
+        <li>\(a_2 =\) reject the shipment</li>
+        <li>Action space: \(\mathcal{A} = \{a_1, a_2\}\)</li>
+      </ul>
+    </li>
+    <li><strong>Loss function:</strong>
+      <ul>
+        <li>Accept: \(L(e, a_1) = 10 e\)</li>
+        <li>Reject: \(L(e, a_2) = 1\)</li>
+        <li>Accepting a bad lot is much more costly than rejecting unnecessarily.</li>
+      </ul>
+    </li>
+    <li><strong>Experiment / Observations:</strong>
+      <ul>
+        <li>Sample \(n\) transistors, count defective \(X\).</li>
+        <li>Assume \(X \sim \text{Binomial}(n, e)\) for small \(n\) relative to shipment size.</li>
+      </ul>
+    </li>
+    <li><strong>Prior information:</strong>
+      <ul>
+        <li>Historical data suggest \(e \sim \text{Beta}(0.05, 1)\).</li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>Visualization:</strong></p>
+  <p>
+    Unknown defect proportion \(e \in [0,1]<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+    Sample \(n\) transistors → \(X\) defects observed<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+    Decision: Accept (\(a_1\)) or Reject (\(a_2\))<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+    Loss \(L(e, a) = \{10 e \text{ if accept}, 1 \text{ if reject}\}\)
+  </p>
+
+  <h4>Key points illustrated by these examples</h4>
+  <ul>
+    <li><strong>State of nature (parameter)</strong> is what you want to learn or react to.</li>
+    <li><strong>Action</strong> is your decision or estimate.</li>
+    <li><strong>Loss function</strong> quantifies the consequences of wrong actions—can be asymmetric or proportional.</li>
+    <li><strong>Prior information</strong> captures historical knowledge and informs decisions.</li>
+    <li><strong>Experiments/observations</strong> provide data to update beliefs or guide actions.</li>
+  </ul>
+  <p>These examples show how <strong>decision theory formalizes real-world problems</strong>, whether it’s estimating demand or quality control, integrating data, prior knowledge, and costs.</p>
+</section>
+
   </div>
 
 
@@ -187,7 +295,53 @@
 
   
   <div class="chapter-section" id="3">
-    
+    <section>
+  <h4>Grappling with the tension between decision theory and statistical inference</h4>
+
+  <h4>The main idea</h4>
+  <ul>
+    <li>In <strong>decision theory</strong>, we usually imagine a well-defined problem: choose an action, know the possible consequences, and write down a <strong>loss function</strong> and a <strong>prior</strong>. Then calculate the best action.</li>
+    <li>In <strong>statistical inference</strong>, you don’t usually stop with a decision. Instead, you try to <em>summarize the evidence</em> in a way others can use for their own decisions. Example: a physicist measuring the speed of light reports an estimate and uncertainty for others to use.</li>
+  </ul>
+
+  <h4>Why statisticians avoid losses and priors</h4>
+  <ul>
+    <li>Many statisticians use statistical inference as a <strong>shield</strong>: they say, “we don’t need losses or priors, we just give the data summary.”</li>
+    <li>But that’s risky because:
+      <ul>
+        <li><strong>Usability:</strong> Reports should be structured to be useful for decision-making. Classical tools sometimes fail.</li>
+        <li><strong>Available information:</strong> Investigators often know something about losses or prior knowledge (e.g., medical trials).</li>
+        <li><strong>Inference itself is a decision:</strong> Choosing how to report results (confidence interval, p-value, posterior) is an action, which implies losses, even if only the “loss” of miscommunicating evidence.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h4>Visualization</h4>
+  <p>Imagine two layers:</p>
+  <ul>
+    <li><strong>Decision layer:</strong> Someone acts (policymaker, engineer, doctor). They need probabilities and consequences.</li>
+    <li><strong>Inference layer:</strong> Statistician provides a “package” of evidence (confidence intervals, posteriors, likelihoods).</li>
+  </ul>
+  <p>The catch: if the inference layer ignores loss and prior information, the “package” may be clumsy, forcing the decision layer to struggle or misinterpret.</p>
+  <p>Imagine attaching <strong>labels and dials</strong> to the package:</p>
+  <ul>
+    <li>Labels = what prior information went in.</li>
+    <li>Dials = what losses matter for different users.</li>
+  </ul>
+  <p>Then the evidence can be plugged into many decisions.</p>
+
+  <h4>Decision-theoretic twist</h4>
+  <ul>
+    <li>Even if priors and losses are banished from inference, decision theory sneaks back in.</li>
+    <li>Many standard inference rules (confidence intervals, unbiased estimators) can be <em>re-expressed</em> as solutions to hidden decision problems with special loss functions.</li>
+    <li>Thus, decision theory remains useful in analyzing inference.</li>
+  </ul>
+
+  <p>Big message: <strong>inference and decision are not separate universes</strong>. Inference is just a special kind of decision, where the action is “choose how to summarize the evidence.”</p>
+
+  <p>This passage essentially pokes statisticians: don’t hide behind “objectivity.” Losses and priors are always present, either explicit or implicit.</p>
+</section>
+
   </div>
 
 
