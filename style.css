@@ -3,18 +3,18 @@ body {
   font-family: 'Inter', sans-serif;
   margin: 0;
   padding: 0;
-  background: #fdfcfb; /* soft off-white */
-  color: #2d2d2d; /* dark grey text */
+  background: #121212; /* deep dark background */
+  color: #e6e6e6; /* light grey text */
   line-height: 1.6;
 }
 
 /* ===== Header ===== */
 header {
-  background: linear-gradient(90deg, #4b0082, #6a0dad); /* royal purple gradient */
-  color: white;
+  background: linear-gradient(90deg, #3a0066, #5a189a); /* royal purple gradient */
+  color: #f5f5f5;
   padding: 2em 1em;
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.4);
 }
 header h1 {
   margin: 0.2em 0;
@@ -23,27 +23,28 @@ header h1 {
 header p {
   font-size: 1.1em;
   margin: 0;
+  color: #ddd;
 }
 
 /* ===== Navigation ===== */
 nav {
-  background: #e9e4f0; /* light lavender tint */
+  background: #1e1e1e; /* dark grey bar */
   text-align: center;
   padding: 0.8em;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
 }
 nav a {
   margin: 0 1.2em;
   text-decoration: none;
-  color: #6a0dad; /* deep violet */
+  color: #c9a227; /* gold */
   font-weight: 600;
   transition: color 0.3s, background 0.3s;
   padding: 0.4em 0.8em;
   border-radius: 4px;
 }
 nav a:hover {
-  background: #4b0082; /* darker violet */
-  color: white;
+  background: #5a189a; /* violet highlight */
+  color: #fff;
 }
 
 /* ===== Section Styling ===== */
@@ -51,18 +52,18 @@ section {
   max-width: 1100px;
   margin: 2em auto;
   padding: 1.5em 2em;
-  background: white;
+  background: #1c1c1c; /* dark card */
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
 }
 section h2 {
-  color: #4b0082;
-  border-bottom: 2px solid #c9a227; /* gold accent underline */
+  color: #c9a227; /* gold */
+  border-bottom: 2px solid #5a189a; /* violet underline */
   padding-bottom: 0.3em;
   margin-bottom: 1em;
 }
 section h3 {
-  color: #6a0dad;
+  color: #bb86fc; /* softer purple for subheadings */
   margin-top: 1.2em;
 }
 
@@ -76,7 +77,7 @@ ul li {
 
 /* ===== Links in Content ===== */
 section a {
-  color: #6a0dad;
+  color: #bb86fc; /* soft purple links */
   font-weight: 600;
   text-decoration: underline;
 }
@@ -88,8 +89,8 @@ section a:hover {
 footer {
   text-align: center;
   font-size: 0.9em;
-  color: #555;
+  color: #aaa;
   margin: 3em 0 1em 0;
   padding-top: 1em;
-  border-top: 2px solid #c9a227; /* gold line */
+  border-top: 2px solid #5a189a; /* violet line */
 }
