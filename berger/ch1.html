@@ -61,48 +61,267 @@
   <div class="chapter-contents">
     <h3>Contents</h3>
     <ul>
-      <li><a href="#sec1">1. Introduction to Bayesian Inference</a></li>
-      <li><a href="#sec2">2. Prior, Likelihood, and Posterior</a></li>
-      <li><a href="#sec3">3. Decision Theory Basics</a></li>
-      <li><a href="#sec4">4. Examples and Applications</a></li>
+      <li><a href="#1">1. Introduction to Basic Elements </a></li>
+      <li><a href="#2">2. Prior, Likelihood, and Posterior</a></li>
+      <li><a href="#3">3. Decision Theory Basics</a></li>
+      <li><a href="#4">4. Examples and Applications</a></li>
     </ul>
   </div>
 
-  <div class="chapter-section" id="sec1">
-    <h4>1. Introduction to Bayesian Inference</h4>
-    <p>
-      This section introduces the concept of Bayesian inference, contrasting it with classical approaches.  
-      Key points include the formulation of prior beliefs and updating them with data to form posterior distributions.
-    </p>
+  <div class="chapter-section" id="1">
+    <section>
+  <h4>1. State of nature</h4>
+  <ul>
+    <li>The <strong>unknown quantity</strong> that influences the outcome of a decision is called the <strong>state of nature</strong>, denoted \(\theta\).</li>
+    <li>The <strong>set of all possible states of nature</strong> is denoted \(\Theta\). Think of it as the universe of scenarios that could possibly occur.</li>
+    <li>Example: If you’re deciding whether to carry an umbrella, the state of nature is the weather tomorrow (\(\theta =\) “rain” or “sun”).</li>
+  </ul>
+
+  <h4>2. Parameter and parameter space</h4>
+  <ul>
+    <li>When you perform experiments to learn about \(\theta\), you assume your observations follow a <strong>probability distribution</strong> that depends on \(\theta\).</li>
+    <li>In this context, \(\theta\) is called the <strong>parameter</strong>, and \(\Theta\) is the <strong>parameter space</strong>.</li>
+    <li>Example: Measuring the mean weight of apples in a basket; the unknown mean weight is the parameter, and all plausible mean weights form the parameter space.</li>
+  </ul>
+
+  <h4>3. Actions</h4>
+  <ul>
+    <li><strong>Decisions</strong> are formally called <strong>actions</strong>, denoted \(a\).</li>
+    <li>The <strong>set of all possible actions</strong> is denoted \(\mathcal{A}\).</li>
+    <li>Example: Actions could be {carry umbrella, don’t carry umbrella}.</li>
+  </ul>
+
+  <h4>4. Loss function</h4>
+  <ul>
+    <li>A <strong>loss function</strong> \(L(\theta, a)\) quantifies the “cost” of taking action \(a\) when the true state of nature is \(\theta\).</li>
+    <li>It formalizes the idea of making mistakes: choosing a suboptimal action leads to a positive loss.</li>
+    <li>Example:
+      <ul>
+        <li>If it rains (\(\theta = \text{rain}\)) and you didn’t take an umbrella (\(a = \text{no umbrella}\)), the loss \(L(\theta, a)\) might be high (getting wet).</li>
+        <li>If it’s sunny and you carried an umbrella, the loss is small (slightly inconvenient).</li>
+      </ul>
+    </li>
+    <li>All loss functions are assumed to be <strong>bounded below</strong>, i.e., \(L(\theta, a) \ge -K > -\infty\), ensuring technical soundness.</li>
+  </ul>
+
+  <h4>Visualization</h4>
+  <p>Imagine a simple <strong>decision map</strong>:</p>
+  <p>
+    State of Nature (\(\theta\)) → True world scenario (unknown)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+    Observations (X) → Data informs your beliefs<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+    Actions (a) → Choices you can make<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+    Loss Function L(\(\theta, a\)) → Cost incurred based on action vs reality
+  </p>
+  <ul>
+    <li><strong>Top layer:</strong> Reality (\(\theta\))</li>
+    <li><strong>Middle layer:</strong> What you observe and learn</li>
+    <li><strong>Bottom layer:</strong> Action you take, evaluated through loss</li>
+  </ul>
+</section>
+
   </div>
 
-  <div class="chapter-section" id="sec2">
-    <h4>2. Prior, Likelihood, and Posterior</h4>
-    <p>
-      The Bayesian framework consists of three fundamental components:
-    </p>
-    <ul>
-      <li><strong>Prior:</strong> Represents prior knowledge or beliefs about a parameter.</li>
-      <li><strong>Likelihood:</strong> The probability of observed data given the parameter.</li>
-      <li><strong>Posterior:</strong> Updated beliefs combining prior and likelihood via Bayes’ theorem.</li>
-    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <div class="chapter-section" id="2">
+   
   </div>
 
-  <div class="chapter-section" id="sec3">
-    <h4>3. Decision Theory Basics</h4>
-    <p>
-      Decision theory provides a framework for making choices under uncertainty.  
-      Concepts of <em>loss functions</em> and <em>risk</em> are introduced, forming the foundation for Bayesian decision-making.
-    </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <div class="chapter-section" id="3">
+    
   </div>
 
-  <div class="chapter-section" id="sec4">
-    <h4>4. Examples and Applications</h4>
-    <p>
-      Illustrative examples of Bayesian updating and simple decision problems are presented.  
-      Future sections will expand these with R code snippets and numerical simulations.
-    </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <div class="chapter-section" id="4">
+    
   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+    
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+    
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 </section>
 
 <footer>
