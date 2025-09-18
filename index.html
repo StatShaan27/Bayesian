@@ -20,10 +20,17 @@
 </nav>
 
 <section>
-  <h2>Welcome</h2>
-  <p>This website documents my 2025 Summer reading project under the guidance of <strong>Prof. Sourabh Bhattacharya</strong>. The project critically compares Bayesian, classical, and machine learning paradigms, exploring paradoxes in the latter two and how Bayesian methods resolve them in theory and practice.</p>
+  <h2>About This Project</h2>
+  <p>
+    This project is carried out under the guidance of <strong>Prof. Sourabh Bhattacharya</strong>.  
+    The main objective is to critically compare the <strong>Bayesian, Classical, and Machine Learning paradigms</strong>,  
+    highlighting paradoxes in the latter two and showing how Bayesian methods resolve them,  
+    both in theory and in practice.  
+  </p>
+</section>
 
-  <h3>About the Student</h3>
+<section>
+  <h2>About Me</h2>
   <p><strong>Name:</strong> Mohammad Shaan<br>
      <strong>Program:</strong> B.Stat (Hons), Indian Statistical Institute, Kolkata<br>
      <strong>Email:</strong> mdsworld2006@gmail.com</p>
@@ -31,34 +38,42 @@
     <a href="Shaan_CV.pdf" target="_blank">Resume</a> | 
     <a href="https://www.linkedin.com/in/mohammad-shaan-28ab88312/" target="_blank">LinkedIn Profile</a>
   </p>
+</section>
 
-  <h3>Project Contents</h3>
-  <ul>
-    <li>📘 Foundations of Bayesian Inference</li>
-    <li>⚖️ Paradoxes in Classical Inference</li>
-    <li>🤖 Machine Learning vs Bayesian Approaches</li>
-    <li>📊 Applications in Big Data and AI</li>
-  </ul>
-
-  <h3>Books and References</h3>
+<section>
+  <h2>Project Plan</h2>
+  <h3>Core References</h3>
   <ul>
     <li><em>Statistical Decision Theory and Bayesian Analysis</em> – J. O. Berger</li>
     <li><em>Bayesian Data Analysis</em> – Gelman et al.</li>
-    <li><em>Bayesian Reasoning and Machine Learning</em> – Barber</li>
+    <li><em>Bayesian Reasoning and Machine Learning</em> – David Barber</li>
+    <li>Selected chapters from <em>Casella & Berger</em></li>
+    <li>Overview PDF shared by Prof. Bhattacharya</li>
   </ul>
 
-  <p><strong>Last updated:</strong> September 18, 2025</p>
+  <h3>Supporting Machine Learning References</h3>
+  <ul>
+    <li><em>Pattern Recognition and Machine Learning</em> – Bishop</li>
+    <li><em>The Elements of Statistical Learning</em> – Hastie, Tibshirani, Friedman</li>
+  </ul>
 
-  <div id="announcement-box">
-    <button onclick="toggleProgress()" id="progress-toggle">📢 Show Recent Progress</button>
-    <div id="progress-box" style="display: none;">
-      <h3>📢 Recent Progress</h3>
-      <ul>
-        <li>✅ Completed Berger’s Ch. 2: <a href="berger-ch2.html">Decision Theory Basics</a></li>
-        <li>🔄 Working on Gelman’s Ch. 3: <a href="gelman-ch3.html">Posterior Computation</a></li>
-      </ul>
-    </div>
-  </div>
+  <h3>Reports & Papers</h3>
+  <ul>
+    <li>Case studies on Bayesian inference in data science</li>
+    <li>Research on paradoxes in classical and ML paradigms</li>
+    <li>Applications of Bayesian methods in AI and big data</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Progress & Summaries</h2>
+  <p>As I go through the material, I will document my progress here.</p>
+  <ul>
+    <li>📘 <a href="berger-ch2.html">Berger: Decision Theory Basics (Ch. 2)</a></li>
+    <li>📘 <a href="gelman-ch3.html">Gelman: Posterior Computation (Ch. 3)</a></li>
+    <li>📑 <a href="paradoxes.html">Notes on Paradoxes of Classical Inference</a></li>
+    <li>🤖 <a href="ml-comparison.html">Bayesian vs Machine Learning: Comparative Notes</a></li>
+  </ul>
 </section>
 
 <footer>
@@ -69,19 +84,6 @@
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-</script>
-<script>
-  function toggleProgress() {
-    const box = document.getElementById("progress-box");
-    const btn = document.getElementById("progress-toggle");
-    if (box.style.display === "none" || box.style.display === "") {
-      box.style.display = "block";
-      btn.textContent = "📢 Hide Recent Progress";
-    } else {
-      box.style.display = "none";
-      btn.textContent = "📢 Show Recent Progress";
-    }
-  }
 </script>
 
 </body>
