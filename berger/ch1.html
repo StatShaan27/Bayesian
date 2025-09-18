@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Berger – Chapter 1: Basic Concepts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    /* Chapter page specific styling */
+    .chapter-contents {
+      background: #1f1f1f;
+      padding: 1em 1.5em;
+      border-radius: 10px;
+      margin-bottom: 2em;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+    .chapter-contents h3 {
+      color: #c9a227; /* gold */
+      margin-bottom: 0.5em;
+    }
+    .chapter-contents ul {
+      padding-left: 1.5em;
+    }
+    .chapter-section {
+      background: #2a2a2a;
+      padding: 1.2em 1.5em;
+      border-radius: 10px;
+      margin-bottom: 2em;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    }
+    .chapter-section h4 {
+      color: #bb86fc; /* purple subheading */
+      margin-top: 0;
+      border-bottom: 2px solid #c9a227; /* gold underline */
+      padding-bottom: 0.3em;
+      margin-bottom: 0.8em;
+    }
+    .chapter-section p, .chapter-section ul {
+      color: #e6e6e6;
+    }
+    .chapter-section a {
+      color: #c9a227;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Berger – Chapter 1: Basic Concepts</h1>
+  <p>Summer Reading Project on Bayesian Statistics</p>
+</header>
+
+<nav>
+  <a href="../../index.html">Home</a>
+  <a href="../../notes.html">Books and Chapter Notes</a>
+  <a href="../../reports.html">Supporting Reference Reports</a>
+  <a href="../../projrep.html">Final project report</a>
+</nav>
+
+<section>
+  <div class="chapter-contents">
+    <h3>Contents</h3>
+    <ul>
+      <li><a href="#sec1">1. Introduction to Bayesian Inference</a></li>
+      <li><a href="#sec2">2. Prior, Likelihood, and Posterior</a></li>
+      <li><a href="#sec3">3. Decision Theory Basics</a></li>
+      <li><a href="#sec4">4. Examples and Applications</a></li>
+    </ul>
+  </div>
+
+  <div class="chapter-section" id="sec1">
+    <h4>1. Introduction to Bayesian Inference</h4>
+    <p>
+      This section introduces the concept of Bayesian inference, contrasting it with classical approaches.  
+      Key points include the formulation of prior beliefs and updating them with data to form posterior distributions.
+    </p>
+  </div>
+
+  <div class="chapter-section" id="sec2">
+    <h4>2. Prior, Likelihood, and Posterior</h4>
+    <p>
+      The Bayesian framework consists of three fundamental components:
+    </p>
+    <ul>
+      <li><strong>Prior:</strong> Represents prior knowledge or beliefs about a parameter.</li>
+      <li><strong>Likelihood:</strong> The probability of observed data given the parameter.</li>
+      <li><strong>Posterior:</strong> Updated beliefs combining prior and likelihood via Bayes’ theorem.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-section" id="sec3">
+    <h4>3. Decision Theory Basics</h4>
+    <p>
+      Decision theory provides a framework for making choices under uncertainty.  
+      Concepts of <em>loss functions</em> and <em>risk</em> are introduced, forming the foundation for Bayesian decision-making.
+    </p>
+  </div>
+
+  <div class="chapter-section" id="sec4">
+    <h4>4. Examples and Applications</h4>
+    <p>
+      Illustrative examples of Bayesian updating and simple decision problems are presented.  
+      Future sections will expand these with R code snippets and numerical simulations.
+    </p>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 Mohammad Shaan | Hosted on GitHub Pages
+</footer>
+
+<!-- MathJax for LaTeX -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+</body>
+</html>
