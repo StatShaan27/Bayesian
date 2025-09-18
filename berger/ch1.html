@@ -64,7 +64,12 @@
       <li><a href="#1">1. Introduction to Basic Elements </a></li>
       <li><a href="#2">2. Two concrete examples of Decision problems</a></li>
       <li><a href="#3">3. Grappling with the Tension between Decision Theory and Statistical Inference</a></li>
-      <li><a href="#4">4. Examples and Applications</a></li>
+      <li><a href="#4">4. Concept of Bayesian Expected Loss</a></li>
+      <li><a href="#4">4. Concept of Bayesian Expected Loss</a></li>
+      <li><a href="#4">4. Concept of Bayesian Expected Loss</a></li>
+      <li><a href="#4">4. Concept of Bayesian Expected Loss</a></li>
+      <li><a href="#4">4. Concept of Bayesian Expected Loss</a></li>
+      <li><a href="#4">4. Concept of Bayesian Expected Loss</a></li>
     </ul>
   </div>
 
@@ -375,7 +380,79 @@
 
   
   <div class="chapter-section" id="4">
-    
+    <section>
+  <h4>1. Concept of Bayesian Expected Loss</h4>
+  <ul>
+    <li>The <strong>unknown quantity</strong> is \(\theta\), which governs the outcome.</li>
+    <li>At decision time, uncertainty in \(\theta\) is captured by a <strong>probability distribution</strong> \(\pi^*(\theta)\).
+      <ul>
+        <li>\(\pi^*(\theta)\) is usually the <strong>posterior distribution</strong> after observing data.</li>
+        <li>If no data are available, it can be the prior \(\pi(\theta)\).</li>
+      </ul>
+    </li>
+    <li>The <strong>expected loss</strong> of an action \(a\) is the average loss over all possible \(\theta\), weighted by \(\pi^*(\theta)\).</li>
+  </ul>
+  <p><strong>Mathematical definition:</strong></p>
+  <p>
+    \[
+    \rho(\pi^*, a) = \mathbb{E}_{\pi^*}[L(\theta, a)] = \int_\Theta L(\theta, a)\, dF_{\pi^*}(\theta)
+    \]
+  </p>
+  <ul>
+    <li>\(L(\theta, a)\) is the <strong>loss function</strong>, and the integral computes the <strong>weighted average loss</strong>.</li>
+    <li>Intuition: “Given my current belief about \(\theta\), how costly will this action be on average?”</li>
+  </ul>
+
+  <h4>2. Example 1: Drug demand (no data)</h4>
+  <ul>
+    <li>Believed distribution: \(\theta_2 \sim \text{Uniform}(0.1, 0.2)\)</li>
+    <li>Loss function \(L(\theta_2, a)\) is <strong>asymmetric linear</strong>, as in the previous example.</li>
+    <li>Bayesian expected loss:
+      \[
+      \rho(\pi, a) = \int_{0.1}^{0.2} L(\theta_2, a)\, \pi(\theta_2)\, d\theta_2
+      \]
+    </li>
+    <li>The integral splits depending on \(a < \theta_2\) (underestimate) or \(a > \theta_2\) (overestimate), giving piecewise formulas.</li>
+    <li>The decision-maker chooses \(a\) to <strong>minimize expected loss</strong>.</li>
+  </ul>
+
+  <h4>3. Example 3: Transistor shipment</h4>
+  <ul>
+    <li>Actions: \(a_1 =\) accept, \(a_2 =\) reject</li>
+    <li>Losses: \(L(\theta_1, a_1) = -500\), \(L(\theta_2, a_1) = 1000\), etc.</li>
+    <li>Bayesian expected loss:
+      <p>
+        \(\rho(\pi, a_1) = L(\theta_1, a_1)\pi(\theta_1) + L(\theta_2, a_1)\pi(\theta_2) = -500(0.9) + 1000(0.1) = -350\)
+      </p>
+      <p>
+        \(\rho(\pi, a_2) = -300\)
+      </p>
+    </li>
+    <li>Action \(a_1\) is better because it <strong>minimizes expected loss</strong>.</li>
+  </ul>
+
+  <h4>4. Key points</h4>
+  <ul>
+    <li>\(\pi^*\) represents the <strong>current belief</strong> (posterior) rather than just prior.</li>
+    <li>Expected loss provides a <strong>decision rule</strong>: choose the action \(a\) that minimizes \(\rho(\pi^*, a)\).</li>
+    <li>Assumes action does not influence \(\theta\); if it does, expected loss formula can be adjusted.</li>
+  </ul>
+
+  <h4>Visualization idea</h4>
+  <p>
+    θ ~ π*(θ)  ← current belief<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+    Action a chosen<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+    Loss L(θ, a)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+    Average over θ → Bayesian expected loss ρ(π*, a)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+    Decision: choose a to minimize ρ(π*, a)
+  </p>
+  <p><strong>Core principle:</strong> Bayesian decision-making = pick the action with minimum expected loss under your current beliefs. This unifies estimation, prediction, and classification under a single formal rule.</p>
+</section>
+
   </div>
 
 
