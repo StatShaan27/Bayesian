@@ -2,60 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Bayesian Statistics – Summer Reading Project</title>
-  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <title>Summer Reading Project – Bayesian Statistics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
   <h1>Summer Reading Project on Bayesian Statistics</h1>
   <p>Mohammad Shaan, B.Stat-I, Indian Statistical Institute, Kolkata</p>
-  <p>Under the guidance of <strong>Prof. Sourabh Bhattacharya</strong></p>
 </header>
 
 <nav>
   <a href="index.html">Home</a>
   <a href="notes.html">Notes</a>
-  <a href="progress.html">Progress</a>
   <a href="projects.html">Programming</a>
 </nav>
 
 <section>
   <h2>Welcome</h2>
-  <p>
-    This website documents my 2025 Summer Reading Project in Bayesian Statistics
-    under the guidance of <strong>Prof. Sourabh Bhattacharya</strong>.
-    The project explores the comparison of Bayesian, classical, and machine learning paradigms —
-    focusing on paradoxes in the latter two, and how Bayesian methods resolve them in both
-    theory and applications, including modern data science and AI.
-  </p>
+  <p>This website documents my 2025 Summer reading project under the guidance of <strong>Prof. Sourabh Bhattacharya</strong>. The project critically compares Bayesian, classical, and machine learning paradigms, exploring paradoxes in the latter two and how Bayesian methods resolve them in theory and practice.</p>
 
   <h3>About the Student</h3>
+  <p><strong>Name:</strong> Mohammad Shaan<br>
+     <strong>Program:</strong> B.Stat (Hons), Indian Statistical Institute, Kolkata<br>
+     <strong>Email:</strong> mdsworld2006@gmail.com</p>
   <p>
-    <strong>Name:</strong> Mohammad Shaan<br>
-    <strong>Program:</strong> B.Stat (Hons), Indian Statistical Institute, Kolkata<br>
-    <strong>Email:</strong> mdsworld2006@gmail.com
-  </p>
-  <p>
-    <a href="https://statshaan27.github.io/personal/assets/Shaan_CV.pdf" target="_blank">Resume</a> | 
+    <a href="Shaan_CV.pdf" target="_blank">Resume</a> | 
     <a href="https://www.linkedin.com/in/mohammad-shaan-28ab88312/" target="_blank">LinkedIn Profile</a>
   </p>
 
   <h3>Project Contents</h3>
   <ul>
-    <li>📘 Statistical Decision Theory</li>
-    <li>🔎 Paradoxes in Classical Inference</li>
+    <li>📘 Foundations of Bayesian Inference</li>
+    <li>⚖️ Paradoxes in Classical Inference</li>
     <li>🤖 Machine Learning vs Bayesian Approaches</li>
-    <li>⚙️ Applications in Big Data and AI</li>
+    <li>📊 Applications in Big Data and AI</li>
   </ul>
 
   <h3>Books and References</h3>
   <ul>
-    <li><em>Statistical Decision Theory and Bayesian Analysis</em> – J.O. Berger</li>
+    <li><em>Statistical Decision Theory and Bayesian Analysis</em> – J. O. Berger</li>
     <li><em>Bayesian Data Analysis</em> – Gelman et al.</li>
     <li><em>Bayesian Reasoning and Machine Learning</em> – Barber</li>
-    <li>Selected chapters from <em>Casella & Berger</em></li>
   </ul>
 
   <p><strong>Last updated:</strong> September 18, 2025</p>
@@ -65,21 +54,15 @@
     <div id="progress-box" style="display: none;">
       <h3>📢 Recent Progress</h3>
       <ul>
-        <li>
-          ✅ Completed reading <strong>Berger: Chapter 1</strong> — Decision Theoretic Framework
-          (<a href="berger-ch1.html">Notes</a>)
-        </li>
-        <li>
-          🔄 Currently reading <strong>Gelman et al.: Chapter 2</strong> — Fundamentals of Bayesian Inference
-          (<a href="gelman-ch2.html">Notes</a>)
-        </li>
+        <li>✅ Completed Berger’s Ch. 2: <a href="berger-ch2.html">Decision Theory Basics</a></li>
+        <li>🔄 Working on Gelman’s Ch. 3: <a href="gelman-ch3.html">Posterior Computation</a></li>
       </ul>
     </div>
   </div>
 </section>
 
 <footer>
-  &copy; 2025 Mohammad Shaan | This site is maintained on GitHub Pages.
+  &copy; 2025 Mohammad Shaan | Hosted on GitHub Pages
 </footer>
 
 <!-- MathJax for LaTeX -->
@@ -89,14 +72,14 @@
 </script>
 <script>
   function toggleProgress() {
-    const progressBox = document.getElementById("progress-box");
-    const toggleBtn = document.getElementById("progress-toggle");
-    if (progressBox.style.display === "none" || progressBox.style.display === "") {
-      progressBox.style.display = "block";
-      toggleBtn.textContent = "📢 Hide Recent Progress";
+    const box = document.getElementById("progress-box");
+    const btn = document.getElementById("progress-toggle");
+    if (box.style.display === "none" || box.style.display === "") {
+      box.style.display = "block";
+      btn.textContent = "📢 Hide Recent Progress";
     } else {
-      progressBox.style.display = "none";
-      toggleBtn.textContent = "📢 Show Recent Progress";
+      box.style.display = "none";
+      btn.textContent = "📢 Show Recent Progress";
     }
   }
 </script>
