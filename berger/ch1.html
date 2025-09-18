@@ -67,7 +67,7 @@
       <li><a href="#4">4. Concept of Bayesian Expected Loss</a></li>
       <li><a href="#4">5. Solving the Drug Demand Example</a></li>
       <li><a href="#4">6. Frequentist Risk</a></li>
-      <li><a href="#4">4. Concept of Bayesian Expected Loss</a></li>
+      <li><a href="#4">7. Frequentist Risk in the Drug Demand Problem</a></li>
       <li><a href="#4">4. Concept of Bayesian Expected Loss</a></li>
       <li><a href="#4">4. Concept of Bayesian Expected Loss</a></li>
     </ul>
@@ -590,6 +590,2096 @@
 
 
 
+<div class="chapter-section" id="6">
+  <section>
+  <h4>1. Decision Rule</h4>
+  <ul>
+    <li>A <strong>decision rule</strong> \(\delta(X)\) is a function mapping observed data \(X\) to an action \(a \in \mathcal{A}\):
+      \[
+      \delta: \mathcal{X} \to \mathcal{A}, \quad a = \delta(X)
+      \]
+    </li>
+    <li>In <strong>no-data problems</strong>, a decision rule is simply an action.</li>
+    <li>Two rules are <strong>equivalent</strong> if they give the same action for all \(X\) under every possible \(\theta\).</li>
+    <li>Example 1 (Drug demand): \(\delta(X) = X/n\) (sample proportion), does not use loss or prior.</li>
+    <li>Example 2 (Transistor shipment):
+      \[
+      \delta(X) = 
+      \begin{cases} 
+      a_1 & \text{if } X/n \le 0.05 \\ 
+      a_2 & \text{if } X/n > 0.05
+      \end{cases}
+      \]
+    </li>
+  </ul>
+
+  <h4>2. Frequentist Risk Function</h4>
+  <ul>
+    <li>In the frequentist approach, \(\theta\) is fixed but unknown.</li>
+    <li>Risk of a decision rule \(\delta\) is the expected loss over all possible data \(X\) given \(\theta\):
+      \[
+      R(\theta, \delta) = \mathbb{E}_\theta [L(\theta, \delta(X))] = \int L(\theta, \delta(x)) \, dP_\theta(x)
+      \]
+    </li>
+    <li>Intuition: average loss if applying \(\delta(X)\) repeatedly on samples drawn from \(\theta\).</li>
+    <li>Contrast with Bayesian expected loss:
+      <ul>
+        <li>Bayesian: average over \(\theta\) (posterior).</li>
+        <li>Frequentist: average over \(X\) (data) with \(\theta\) fixed.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h4>3. Comparing Decision Rules</h4>
+  <ul>
+    <li><strong>Partial ordering via risk:</strong>
+      <ul>
+        <li>\(\delta_1\) is R-better than \(\delta_2\) if \(R(\theta, \delta_1) \le R(\theta, \delta_2)\) for all \(\theta\), with strict inequality for some \(\theta\).</li>
+        <li>R-equivalent: risks are equal for all \(\theta\).</li>
+      </ul>
+    </li>
+    <li><strong>Admissibility:</strong>
+      <ul>
+        <li>A rule \(\delta\) is admissible if no other rule has uniformly smaller risk.</li>
+        <li>Inadmissible: some other rule is strictly better in risk for at least one \(\theta\).</li>
+        <li>Many admissible rules exist; their risks may cross across \(\theta\).</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h4>4. Visualization Idea</h4>
+  <p>
+    θ fixed (unknown)<br>
+    &nbsp;&nbsp;&nbsp;↓<br>
+    Decision rule δ(X) → action a<br>
+    &nbsp;&nbsp;&nbsp;↓<br>
+    Data X ~ Pθ  → distribution of X<br>
+    &nbsp;&nbsp;&nbsp;↓<br>
+    Compute expected loss over X → Risk R(θ, δ)
+  </p>
+  <p>Unlike Bayesian expected loss (single number per action), frequentist risk is a function over θ, showing performance across all possible states of nature.</p>
+
+  <h4>5. Intuition</h4>
+  <ul>
+    <li>Bayesian: choose action minimizing <strong>average loss over θ</strong> given current belief.</li>
+    <li>Frequentist: choose rule minimizing <strong>average loss over repeated samples X</strong> for every true θ.</li>
+    <li>Admissibility ensures no other rule is uniformly better.</li>
+  </ul>
+
+  <h4>Decision Rule as a Statistic</h4>
+  <ul>
+    <li>A decision rule \(\delta(X)\) maps data \(X\) to an action \(a \in \mathcal{A}\).</li>
+    <li>Since \(\delta(X)\) depends <strong>only on observed data</strong>, it is a <strong>function of the sample</strong>.</li>
+    <li>Formally, a statistic is any measurable function of the data, so every decision rule is technically a statistic.</li>
+    <li>Not every statistic is a decision rule:
+      <ul>
+        <li>Example: sample mean \(\bar{X}\) is a statistic.</li>
+        <li>Becomes a decision rule when mapped to an action:
+          \[
+          \delta(X) = 
+          \begin{cases} 
+          \text{accept} & \bar{X} \le 0.05 \\ 
+          \text{reject} & \bar{X} > 0.05
+          \end{cases}
+          \]
+        </li>
+      </ul>
+    </li>
+    <li>Intuition: statistic summarizes the data; decision rule uses that summary to make a choice. Estimators themselves are decision rules mapping data to an estimate.</li>
+  </ul>
+  <p>In short: <strong>decision rule \(\delta(X)\) is a statistic because it is a function of the sample.</strong></p>
+</section>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="7">
+    <section>
+  <h4>Frequentist Risk in the Drug Demand Problem</h4>
+
+  <h4>Step 1: Recall the setup</h4>
+  <ul>
+    <li>Unknown proportion: \(\theta_2 \in [0.1, 0.2]\)</li>
+    <li>Sample: \(X \sim \text{Binomial}(n, \theta_2)\)</li>
+    <li>Decision rule (estimator): \(\delta(X) = X/n\) (sample proportion)</li>
+    <li>Loss function (asymmetric linear):
+      \[
+      L(\theta_2, a) = 
+      \begin{cases} 
+      \theta_2 - a & \text{if } a \le \theta_2 \\ 
+      2(a - \theta_2) & \text{if } a > \theta_2
+      \end{cases}
+      \]
+    </li>
+    <li>Frequentist risk:
+      \[
+      R(\theta_2, \delta) = \mathbb{E}_{\theta_2}[L(\theta_2, \delta(X))] = \sum_{x=0}^n L(\theta_2, \delta(x)) \, P_{\theta_2}(X=x)
+      \]
+    </li>
+  </ul>
+
+  <h4>Step 2: Express \(\delta(X)\) in the loss</h4>
+  <ul>
+    <li>With \(\delta(X) = X/n\):
+      \[
+      L(\theta_2, \delta(X)) = 
+      \begin{cases} 
+      \theta_2 - X/n & \text{if } X/n \le \theta_2\\
+      2(X/n - \theta_2) & \text{if } X/n > \theta_2
+      \end{cases}
+      \]
+    </li>
+    <li>Binomial probability:
+      \[
+      P_{\theta_2}(X = x) = \binom{n}{x} \theta_2^x (1-\theta_2)^{n-x}
+      \]
+    </li>
+  </ul>
+
+  <h4>Step 3: Frequentist risk formula</h4>
+  <p>
+    \[
+    R(\theta_2, \delta) = \sum_{x=0}^{\lfloor n \theta_2 \rfloor} (\theta_2 - x/n) \binom{n}{x} \theta_2^x (1-\theta_2)^{n-x} 
+    + \sum_{x=\lfloor n \theta_2 \rfloor + 1}^{n} 2 (x/n - \theta_2) \binom{n}{x} \theta_2^x (1-\theta_2)^{n-x}
+    \]
+  </p>
+  <ul>
+    <li>First sum: <strong>underestimation</strong></li>
+    <li>Second sum: <strong>overestimation</strong></li>
+    <li>This expresses \(R(\theta_2, \delta)\) as a <strong>function of \(\theta_2\)</strong></li>
+  </ul>
+
+  <h4>Step 4: Special case (small \(n\))</h4>
+  <ul>
+    <li>Example: \(n=10\), \(\theta_2 = 0.15\)</li>
+    <li>\(\lfloor n \theta_2 \rfloor = \lfloor 1.5 \rfloor = 1\)</li>
+    <li>Underestimation: \(x = 0,1\)</li>
+    <li>Overestimation: \(x = 2, \dots, 10\)</li>
+    <li>Compute each term using the formula and sum to get \(R(\theta_2, \delta)\)</li>
+  </ul>
+
+  <h4>Step 5: Remarks</h4>
+  <ul>
+    <li>Unlike Bayesian expected loss (a single number), frequentist risk depends on \(\theta_2\).</li>
+    <li>It tells us how “risky” the estimator \(\delta(X) = X/n\) is for every possible true \(\theta_2\).</li>
+    <li>The risk can be plotted as a curve of \(R(\theta_2, \delta)\) vs \(\theta_2\).</li>
+  </ul>
+</section>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-section" id="0">
+  
+</div>
 
 
   <div class="chapter-section" id="6">
