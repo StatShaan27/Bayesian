@@ -1,93 +1,95 @@
-/* General */
+/* ===== Base Layout ===== */
 body {
   font-family: 'Inter', sans-serif;
   margin: 0;
   padding: 0;
-  background: #fdfdfd;
-  color: #333;
+  background: #fdfcfb; /* soft off-white */
+  color: #2d2d2d; /* dark grey text */
   line-height: 1.6;
 }
 
-/* Header */
+/* ===== Header ===== */
 header {
-  background: linear-gradient(90deg, #003366, #005fa3);
+  background: linear-gradient(90deg, #4b0082, #6a0dad); /* royal purple gradient */
   color: white;
   padding: 2em 1em;
   text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 header h1 {
-  margin: 0;
-  font-size: 2em;
+  margin: 0.2em 0;
+  font-size: 2.2em;
 }
 header p {
-  margin: 0.5em 0 0;
-  font-size: 1em;
+  font-size: 1.1em;
+  margin: 0;
 }
 
-/* Navigation */
+/* ===== Navigation ===== */
 nav {
-  background-color: #f4f4f4;
+  background: #e9e4f0; /* light lavender tint */
   text-align: center;
   padding: 0.8em;
-  border-bottom: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 nav a {
   margin: 0 1.2em;
   text-decoration: none;
-  color: #003366;
+  color: #6a0dad; /* deep violet */
   font-weight: 600;
+  transition: color 0.3s, background 0.3s;
+  padding: 0.4em 0.8em;
+  border-radius: 4px;
 }
 nav a:hover {
-  color: #005fa3;
+  background: #4b0082; /* darker violet */
+  color: white;
 }
 
-/* Section */
+/* ===== Section Styling ===== */
 section {
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 2em auto;
-  padding: 2em;
+  padding: 1.5em 2em;
   background: white;
   border-radius: 10px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
-section h2, section h3 {
-  color: #003366;
+section h2 {
+  color: #4b0082;
+  border-bottom: 2px solid #c9a227; /* gold accent underline */
+  padding-bottom: 0.3em;
+  margin-bottom: 1em;
+}
+section h3 {
+  color: #6a0dad;
+  margin-top: 1.2em;
 }
 
-/* Links */
-a {
-  color: #005fa3;
+/* ===== Lists ===== */
+ul {
+  padding-left: 1.2em;
 }
-a:hover {
+ul li {
+  margin: 0.5em 0;
+}
+
+/* ===== Links in Content ===== */
+section a {
+  color: #6a0dad;
+  font-weight: 600;
   text-decoration: underline;
 }
-
-/* Announcement box */
-#announcement-box {
-  margin-top: 2em;
-  padding: 1em;
-  background: #eef6ff;
-  border-left: 4px solid #003366;
-  border-radius: 6px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-}
-#announcement-box button {
-  background-color: #0077cc;
-  color: white;
-  border: none;
-  padding: 0.5em 1em;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 0.9em;
-}
-#announcement-box button:hover {
-  background-color: #005fa3;
+section a:hover {
+  color: #c9a227; /* gold hover */
 }
 
-/* Footer */
+/* ===== Footer ===== */
 footer {
   text-align: center;
   font-size: 0.9em;
-  color: #666;
-  margin: 3em 0 1em;
+  color: #555;
+  margin: 3em 0 1em 0;
+  padding-top: 1em;
+  border-top: 2px solid #c9a227; /* gold line */
 }
