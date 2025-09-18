@@ -65,7 +65,7 @@
       <li><a href="#2">2. Two concrete examples of Decision problems</a></li>
       <li><a href="#3">3. Grappling with the Tension between Decision Theory and Statistical Inference</a></li>
       <li><a href="#4">4. Concept of Bayesian Expected Loss</a></li>
-      <li><a href="#4">4. Concept of Bayesian Expected Loss</a></li>
+      <li><a href="#4">5. Solving the Drug Demand Example</a></li>
       <li><a href="#4">4. Concept of Bayesian Expected Loss</a></li>
       <li><a href="#4">4. Concept of Bayesian Expected Loss</a></li>
       <li><a href="#4">4. Concept of Bayesian Expected Loss</a></li>
@@ -487,8 +487,79 @@
 
 
 
-  <div class="chapter-section" id="0">
-    
+  <div class="chapter-section" id="5">
+    <section>
+  <h4>Solving the Drug Demand Example: Minimizing Bayesian Expected Loss</h4>
+
+  <h4>Step 1: Recall the setup</h4>
+  <ul>
+    <li>Unknown proportion: \(\theta_2 \in [0.1,0.2]\)</li>
+    <li>Prior (uniform): \(\pi(\theta_2) = \text{Uniform}(0.1,0.2)\)</li>
+    <li>Loss function (asymmetric linear):
+      \[
+      L(\theta_2, a) = 
+      \begin{cases} 
+      \theta_2 - a & \text{if } a \le \theta_2 \ (\text{underestimate})\\
+      2(a - \theta_2) & \text{if } a > \theta_2 \ (\text{overestimate})
+      \end{cases}
+      \]
+    </li>
+    <li>Bayesian expected loss:
+      \[
+      \rho(a) = \int_{0.1}^{0.2} L(\theta_2, a) \pi(\theta_2)\, d\theta_2
+      = \int_{0.1}^{0.2} L(\theta_2, a) \cdot 10\, d\theta_2
+      \]
+      (uniform density over width 0.1 gives 10)
+    </li>
+  </ul>
+
+  <h4>Step 2: Split the integral</h4>
+  <p>If \(a \in [0.1,0.2]\), split at \(\theta_2 = a\):</p>
+  \[
+  \rho(a) = \underbrace{\int_{0.1}^{a} 20(a-\theta_2) d\theta_2}_{\text{overestimate}} 
+           + \underbrace{\int_{a}^{0.2} 10(\theta_2 - a) d\theta_2}_{\text{underestimate}}
+  \]
+
+  <h4>Step 3: Compute each integral</h4>
+  <ul>
+    <li>Overestimate part:
+      \[
+      \int_{0.1}^{a} 20 (a - \theta_2) d\theta_2 = 10 a^2 - 2 a + 0.1
+      \]
+    </li>
+    <li>Underestimate part:
+      \[
+      \int_{a}^{0.2} 10 (\theta_2 - a) d\theta_2 = 5 a^2 - 2 a + 0.2
+      \]
+    </li>
+    <li>Total expected loss:
+      \[
+      \rho(a) = (10 a^2 - 2 a + 0.1) + (5 a^2 - 2 a + 0.2) = 15 a^2 - 4 a + 0.3
+      \]
+    </li>
+  </ul>
+
+  <h4>Step 4: Minimize \(\rho(a)\)</h4>
+  <ul>
+    <li>Derivative:
+      \[
+      \frac{d\rho}{da} = 30 a - 4
+      \]
+    </li>
+    <li>Set to 0:
+      \[
+      30 a - 4 = 0 \implies a = \frac{4}{30} \approx 0.1333
+      \]
+    </li>
+    <li>Since \(0.133 \in [0.1,0.2]\), it is valid.</li>
+  </ul>
+
+  <h4>Step 5: Conclusion</h4>
+  <p>The <strong>Bayesian estimate minimizing expected loss</strong> is:</p>
+  <p>\(\boxed{a \approx 0.133}\)</p>
+  <p>Intuition: Overestimating is more costly, so the optimal estimate is biased toward the lower bound of the prior interval.</p>
+</section>
+
   </div>
 
 
