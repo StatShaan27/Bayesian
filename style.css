@@ -1,117 +1,93 @@
+/* General */
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Inter', sans-serif;
   margin: 0;
   padding: 0;
-  background: #f5f7fa;
+  background: #fdfdfd;
   color: #333;
   line-height: 1.6;
 }
 
+/* Header */
 header {
-  background: linear-gradient(135deg, #002855, #003366);
+  background: linear-gradient(90deg, #003366, #005fa3);
   color: white;
   padding: 2em 1em;
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
-
 header h1 {
   margin: 0;
-  font-size: 2.2em;
-  font-family: 'Merriweather', serif;
+  font-size: 2em;
+}
+header p {
+  margin: 0.5em 0 0;
+  font-size: 1em;
 }
 
+/* Navigation */
 nav {
-  background-color: #e9ecef;
-  padding: 1em;
+  background-color: #f4f4f4;
   text-align: center;
-  border-bottom: 1px solid #d6d6d6;
+  padding: 0.8em;
+  border-bottom: 1px solid #ddd;
 }
-
 nav a {
-  margin: 0 1em;
+  margin: 0 1.2em;
   text-decoration: none;
   color: #003366;
-  font-weight: bold;
-  transition: color 0.3s, border-bottom 0.3s;
-  padding-bottom: 0.2em;
+  font-weight: 600;
 }
-
 nav a:hover {
   color: #005fa3;
-  border-bottom: 2px solid #005fa3;
 }
 
+/* Section */
 section {
   max-width: 1000px;
   margin: 2em auto;
   padding: 2em;
   background: white;
-  border-radius: 12px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
 }
-
 section h2, section h3 {
   color: #003366;
-  font-family: 'Merriweather', serif;
 }
 
-ul {
-  padding-left: 1.2em;
+/* Links */
+a {
+  color: #005fa3;
+}
+a:hover {
+  text-decoration: underline;
 }
 
-ul li {
-  margin-bottom: 0.6em;
-}
-
+/* Announcement box */
 #announcement-box {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 300px;
-  background-color: #eef6ff;
-  border-left: 5px solid #003366;
+  margin-top: 2em;
   padding: 1em;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  font-size: 0.95em;
-  transition: all 0.3s ease-in-out;
+  background: #eef6ff;
+  border-left: 4px solid #003366;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
-
 #announcement-box button {
-  margin-bottom: 0.8em;
   background-color: #0077cc;
   color: white;
   border: none;
   padding: 0.5em 1em;
-  border-radius: 6px;
+  border-radius: 5px;
   cursor: pointer;
   font-size: 0.9em;
-  transition: background-color 0.3s;
 }
-
 #announcement-box button:hover {
   background-color: #005fa3;
 }
 
-#announcement-box h3 {
-  margin-top: 0;
-  color: #003366;
-}
-
-#announcement-box a {
-  color: #005fa3;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-#announcement-box a:hover {
-  text-decoration: underline;
-}
-
+/* Footer */
 footer {
   text-align: center;
   font-size: 0.9em;
   color: #666;
-  margin: 3em 0 2em 0;
+  margin: 3em 0 1em;
 }
