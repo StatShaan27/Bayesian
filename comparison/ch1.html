@@ -65,7 +65,7 @@
       <li><a href="#2">2. Interpretations of Probability</a></li>
       <li><a href="#3">3. Illustrative Example — Classical vs Bayesian Reasoning</a></li>
       <li><a href="#4">4. Common Statistical Models</a></li>
-      <li><a href="#5">5. Solving the Drug Demand Example</a></li>
+      <li><a href="#5">5. Bayes’ Theorem — Big Picture</a></li>
       <li><a href="#6">6. Frequentist Risk</a></li>
       <li><a href="#7">7. Frequentist Risk in the Drug Demand Problem</a></li>
       <li><a href="#8">8. Example: Frequentist Risk for Scaled Normal Estimators</a></li>
@@ -538,7 +538,101 @@
 
 
   <div class="chapter-section" id="5">
-    
+    <section>  
+<h2>Bayes’ Theorem — Big Picture</h2>  
+
+<p>Bayes’ theorem is a <b>mechanical rule for updating probabilities</b> about unknown quantities (parameters, hypotheses) when new data arrive. It converts a prior belief about a parameter (\(\theta\)) into a posterior belief (\(\pi(\theta \mid x)\)) by combining the prior with the data likelihood. The posterior then drives prediction, decision-making, model-checking, and sequential updates. All Bayesian inference—prediction, conjugacy, sequential updating, model-checking—flows from this algebraic identity.</p>  
+
+<h3>1. Formula and Interpretation</h3>  
+<p>Given:</p>  
+<ul>  
+  <li>Parameter \(\theta\) in \(\Theta\)</li>  
+  <li>Prior \(\pi(\theta)\): belief about \(\theta\) before seeing data</li>  
+  <li>Sampling model \(p(x\mid\theta)\): likelihood of observing \(x\) given \(\theta\)</li>  
+</ul>  
+<p>Bayes’ theorem:</p>  
+<p>\[ \pi(\theta \mid x) = \frac{p(x \mid \theta) \pi(\theta)}{p(x)}, \quad p(x) = \int p(x \mid \theta)\pi(\theta)\,d\theta \]</p>  
+<ul>  
+  <li>Numerator: prior × likelihood</li>  
+  <li>Denominator: normalization constant (prior predictive)</li>  
+  <li>Posterior \(\pi(\theta \mid x)\) is the updated belief</li>  
+</ul>  
+<p>Useful forms:</p>  
+<ul>  
+  <li>Unnormalized posterior: \(\pi(\theta \mid x) \propto p(x \mid \theta)\pi(\theta)\)</li>  
+  <li>Predictive for future \(Y\): \(p(y\mid x) = \int p(y\mid\theta)\pi(\theta\mid x)\,d\theta\)</li>  
+</ul>  
+
+<h3>2. Discrete vs Continuous</h3>  
+<p>Same logic applies: multiply prior by likelihood, divide by sum/integral over \(\theta\). Denominator is just a normalizing constant.</p>  
+
+<h3>3. Posterior Predictive Distribution</h3>  
+<p>For future observation \(Y\):</p>  
+<p>\[ p(y \mid x) = \int p(y \mid \theta)\pi(\theta \mid x)\,d\theta = \mathbb{E}_{\pi(\cdot \mid x)}[p(y \mid \theta)] \]</p>  
+<p>Prediction = average of model predictions over the posterior. Provides a natural way to check model adequacy.</p>  
+
+<h3>4. Sequential Updating and Commutativity</h3>  
+<p>With conditionally independent data \(X_1, X_2, \dots, X_n\):</p>  
+<ul>  
+  <li>After \(X_1\): \(\pi(\theta \mid x_1) \propto p(x_1 \mid \theta)\pi(\theta)\)</li>  
+  <li>After \(X_2\): \(\pi(\theta \mid x_1,x_2) \propto p(x_2\mid\theta)\pi(\theta \mid x_1)\)</li>  
+</ul>  
+<p>Order does not matter; final posterior depends only on observed data, ensuring sequential coherence.</p>  
+
+<h3>5. Prior Predictive for Model Checking</h3>  
+<p>\(p(x) = \int p(x\mid\theta)\pi(\theta)d\theta\) is the prior predictive. Tiny \(p(x)\) suggests prior/model mismatch or outlier.</p>  
+
+<h3>6. Toy Example: Doctor and Two Tests</h3>  
+<p>Setup:</p>  
+<ul>  
+  <li>\(\theta \in \{0,1\}\), disease present if \(\theta=1\)</li>  
+  <li>Prior: \(P(\theta=1)=0.70\), \(P(\theta=0)=0.30\)</li>  
+  <li>Test X: sensitivity 0.95, false positive 0.40</li>  
+  <li>Observed \(X=1\)</li>  
+</ul>  
+<p>Posterior:</p>  
+<p>\[ P(\theta=1\mid X=1) = \frac{0.95 \cdot 0.70}{0.95 \cdot 0.70 + 0.40 \cdot 0.30} \approx 0.847 \]</p>  
+<p>Posterior predictive for second test \(Y\):</p>  
+<p>\[ P(Y=1\mid X=1) = 0.99 \cdot 0.8466 + 0.004 \cdot 0.1534 \approx 0.839 \]</p>  
+<p>Update after \(Y=0\): \(P(\theta=1\mid X=1,Y=0) \approx 0.053\)</p>  
+<p><b>Lesson:</b> posterior after X becomes prior for Y; multiply by new likelihood and renormalize.</p>  
+
+<h3>7. Conjugacy Example: Normal Prior + Normal Sampling</h3>  
+<ul>  
+  <li>Prior: \(\theta \sim N(\mu_0,\tau_0^2)\)</li>  
+  <li>Likelihood: \(X \mid \theta \sim N(\theta,\sigma^2)\)</li>  
+</ul>  
+<p>Posterior:</p>  
+<p>\[ \tau_1^2 = \frac{1}{\tau_0^{-2} + \sigma^{-2}}, \quad \mu_1 = \tau_1^2(\tau_0^{-2}\mu_0 + \sigma^{-2}x) \]</p>  
+<p>Equivalently (precision notation \(\lambda_0 = \tau_0^{-2}, \lambda = \sigma^{-2}\)):</p>  
+<p>\[ \lambda_1 = \lambda_0 + \lambda, \quad \mu_1 = \frac{\lambda_0 \mu_0 + \lambda x}{\lambda_0 + \lambda} \]</p>  
+<p>Posterior mean = weighted average of prior mean and data, weights = precisions (information).</p>  
+
+<h3>8. Example: Box & Tiao</h3>  
+<p>Observation: \(X=850\)</p>  
+<ul>  
+  <li>Physicist A: prior \(N(900,20^2)\), posterior mean ≈ 890, sd ≈ 17.9</li>  
+  <li>Physicist B: prior \(N(800,80^2)\), posterior mean ≈ 840, sd ≈ 35.8</li>  
+</ul>  
+<p>Interpretation: Strong prior → modest update; weak prior → large update.</p>  
+
+<h3>9. Exchangeability Remark</h3>  
+<p>Observations are exchangeable if the joint distribution depends only on counts, not order. Posterior depends on counts, not stopping rule or order.</p>  
+
+<h3>10. Key Practical Points</h3>  
+<ul>  
+  <li>Posterior summarizes all info from prior and data.</li>  
+  <li>Prior choice matters, especially with weak data.</li>  
+  <li>Use prior predictive for model plausibility; posterior predictive for checking data fit.</li>  
+  <li>Sequential coherence ensures order of processing doesn’t matter.</li>  
+  <li>Conjugate priors provide closed-form posteriors; non-conjugate requires numerical methods (MCMC, Laplace, VI).</li>  
+  <li>Predictive probabilities are testable; posterior probabilities for parameters are not directly observable.</li>  
+</ul>  
+
+<h3>Compact Takeaway</h3>  
+<p>Bayes’ theorem: <i>“Update beliefs by multiplying prior by likelihood, then renormalize.”</i> This produces posterior distributions, predictive distributions, sequential coherence, and a transparent accounting of information when conjugacy holds.</p>  
+</section>
+
 
   </div>
 
