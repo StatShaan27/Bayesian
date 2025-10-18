@@ -63,7 +63,7 @@
     <ul>
       <li><a href="#1">1. Foundations of Statistical Paradigms — Information and Uncertainty </a></li>
       <li><a href="#2">2. Interpretations of Probability</a></li>
-      <li><a href="#3">3. Grappling with the Tension between Decision Theory and Statistical Inference</a></li>
+      <li><a href="#3">3. Illustrative Example — Classical vs Bayesian Reasoning</a></li>
       <li><a href="#4">4. Concept of Bayesian Expected Loss</a></li>
       <li><a href="#5">5. Solving the Drug Demand Example</a></li>
       <li><a href="#6">6. Frequentist Risk</a></li>
@@ -338,7 +338,66 @@
 
   
   <div class="chapter-section" id="3">
-   
+   <section>  
+<h2>Illustrative Example — Classical vs Bayesian Reasoning</h2>  
+
+<h3>1. The Baby Gender Problem Setup</h3>  
+<p>Suppose a couple has six children, with five boys and one girl. We wish to infer the probability \( \theta \) that a baby is male.</p>  
+
+<h3>2. Frequentist (Classical) Analysis</h3>  
+<ul>  
+  <li>\( X_i \sim \text{Bernoulli}(\theta) \), \( i = 1, \dots, 6 \).</li>  
+  <li>Maximum Likelihood Estimate (MLE): \( \hat{\theta} = \frac{5}{6} = 0.833 \).</li>  
+  <li>Testing \( H_0: \theta = 0.5 \):  
+    <ul>  
+      <li>If data collected for fixed \( n=6 \): \( P(Y \ge 5) = 0.109 \).</li>  
+      <li>If data collected until first girl: \( P(Z \ge 5) = 0.031 \).</li>  
+      <li>Thus, inference depends on the stopping rule.</li>  
+    </ul>  
+  </li>  
+</ul>  
+<p>The frequentist inference relies solely on the data and is sensitive to the sampling plan.</p>  
+
+<h3>3. Role of Stopping Rules</h3>  
+<p>In frequentist reasoning, the stopping rule affects the distribution under \( H_0 \), and hence the p-value. This leads to paradoxes when comparing different experimental designs producing the same observed data.</p>  
+
+<h3>4. Bayesian Analysis with Prior and Posterior Updating</h3>  
+<ul>  
+  <li>Priors: \( \theta \sim \text{Beta}(a, b) \).</li>  
+  <li>Likelihood: \( X_1, \dots, X_6 \sim \text{Bernoulli}(\theta) \).</li>  
+  <li>Posterior: \( \theta \mid \text{data} \sim \text{Beta}(a + 5, b + 1) \).</li>  
+  <li>Example: With prior \( \text{Beta}(2,2) \), posterior \( \text{Beta}(7,3) \).</li>  
+  <li>Posterior mean: \( E[\theta \mid \text{data}] = \frac{a+5}{a+b+6} = \frac{7}{10} = 0.7 \).</li>  
+  <li>Predictive probability that the next baby is male = 0.70.</li>  
+</ul>  
+<p>The Bayesian result combines prior belief with data and is invariant to the stopping rule.</p>  
+
+<h3>5. Interpretation and Comparison</h3>  
+<table>  
+  <tr><th>Aspect</th><th>Frequentist (Classical)</th><th>Bayesian (Subjective)</th></tr>  
+  <tr><td>Unknown Quantity</td><td>\( \theta \) is fixed but unknown.</td><td>\( \theta \) is random with a prior distribution.</td></tr>  
+  <tr><td>Data Used</td><td>Only observed outcomes (5 boys, 1 girl).</td><td>Observed outcomes + prior information.</td></tr>  
+  <tr><td>Estimator</td><td>\( \hat{\theta} = 0.833 \).</td><td>Posterior mean \( E[\theta \mid \text{data}] = 0.70 \).</td></tr>  
+  <tr><td>Effect of Stopping Rule</td><td>Inference depends on sampling plan.</td><td>Inference depends only on observed data (exchangeability).</td></tr>  
+  <tr><td>Interpretation</td><td>Probability = long-run frequency.</td><td>Probability = degree of belief updated by evidence.</td></tr>  
+</table>  
+
+<h3>6. Conceptual Visualization</h3>  
+<p>Imagine a tug-of-war between two philosophies:</p>  
+<ul>  
+  <li><b>Frequentist:</b> “Let the data alone speak.” 🧮 (Estimate \( 0.83 \) directly from 5 boys.)</li>  
+  <li><b>Bayesian:</b> “Combine prior belief with data.” 📊 (Prior \( \text{Beta}(2,2) \) leads to posterior mean \( 0.70 \).)</li>  
+</ul>  
+
+<h3>7. Interpretive Summary</h3>  
+<ul>  
+  <li>Frequentist: Parameters are fixed; uncertainty arises from data.</li>  
+  <li>Bayesian: Parameters are random; uncertainty updates with evidence.</li>  
+  <li>Stopping rules affect frequentist inference but not Bayesian inference.</li>  
+  <li>Bayesian reasoning offers coherent, predictive interpretation via posterior distribution.</li>  
+</ul>  
+</section>
+
 
   </div>
 
