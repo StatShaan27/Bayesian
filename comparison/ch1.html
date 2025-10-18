@@ -61,8 +61,8 @@
   <div class="chapter-contents">
     <h3>Contents</h3>
     <ul>
-      <li><a href="#1">1. Main Topic: Foundations of Statistical Paradigms — Information and Uncertainty </a></li>
-      <li><a href="#2">2. Two concrete examples of Decision problems</a></li>
+      <li><a href="#1">1. Foundations of Statistical Paradigms — Information and Uncertainty </a></li>
+      <li><a href="#2">2. Interpretations of Probability</a></li>
       <li><a href="#3">3. Grappling with the Tension between Decision Theory and Statistical Inference</a></li>
       <li><a href="#4">4. Concept of Bayesian Expected Loss</a></li>
       <li><a href="#5">5. Solving the Drug Demand Example</a></li>
@@ -70,22 +70,7 @@
       <li><a href="#7">7. Frequentist Risk in the Drug Demand Problem</a></li>
       <li><a href="#8">8. Example: Frequentist Risk for Scaled Normal Estimators</a></li>
       <li><a href="#9">9. Finite Risk Decision & Bayes Risk</a></li>
-      <li><a href="#10">4. Concept of Bayesian Expected Loss</a></li>
-      <li><a href="#11">4. Concept of Bayesian Expected Loss</a></li>
-      <li><a href="#12">4. Concept of Bayesian Expected Loss</a></li>
-      <li><a href="#13">4. Concept of Bayesian Expected Loss</a></li>
-      <li><a href="#14">4. Concept of Bayesian Expected Loss</a></li>
-      <li><a href="#15">4. Concept of Bayesian Expected Loss</a></li>
-      <li><a href="#16">4. Concept of Bayesian Expected Loss</a></li>
-      <li><a href="#17">4. Concept of Bayesian Expected Loss</a></li>
-      <li><a href="#18">4. Concept of Bayesian Expected Loss</a></li>
-      <li><a href="#19">4. Concept of Bayesian Expected Loss</a></li>
-      <li><a href="#20">4. Concept of Bayesian Expected Loss</a></li>
-      <li><a href="#21">4. Concept of Bayesian Expected Loss</a></li>
-      <li><a href="#22">4. Concept of Bayesian Expected Loss</a></li>
-      <li><a href="#23">4. Concept of Bayesian Expected Loss</a></li>
-      <li><a href="#24">4. Concept of Bayesian Expected Loss</a></li>
-      
+     
     </ul>
   </div>
 
@@ -210,7 +195,116 @@
 
   
   <div class="chapter-section" id="2">
-  
+  <section>
+  <h2>Main Topic: Interpretations of Probability</h2>
+
+  <h2>Subtopics Identified</h2>
+  <ul>
+    <li>Need for Interpreting Probability</li>
+    <li>Physical (Classical) Interpretation</li>
+    <li>Frequentist Interpretation</li>
+    <li>Subjective (Bayesian) Interpretation</li>
+  </ul>
+
+  <h2>Distinction Between the Three Interpretations of Probability</h2>
+  <p>Comparison table of key aspects:</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Aspect</th>
+        <th>Physical / Classical</th>
+        <th>Frequentist</th>
+        <th>Subjective (Bayesian)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Core Idea</strong></td>
+        <td>Probability is the <em>ratio of favorable outcomes to total equally likely outcomes</em>.</td>
+        <td>Probability is the <em>long-run relative frequency</em> of an event in repeated independent trials.</td>
+        <td>Probability is a <em>degree of belief</em> in an event, given available information.</td>
+      </tr>
+
+  <tr>
+    <td><strong>Formal Definition</strong></td>
+    <td>\(P(A) = \dfrac{\text{Number of favorable outcomes}}{\text{Total possible outcomes}}\)</td>
+    <td>\(P(A) = \lim_{n \to \infty} \dfrac{m}{n}\), where \(m\) = number of occurrences of \(A\) in \(n\) trials.</td>
+    <td>\(P(A \mid H)\): probability of \(A\) given background information \(H\).</td>
+  </tr>
+
+  <tr>
+    <td><strong>Type of Information Used</strong></td>
+    <td>Based on <em>a priori</em> reasoning and <em>symmetry</em> (e.g., dice, coins, cards).</td>
+    <td>Based purely on <em>empirical data</em> and <em>repeatable experiments</em>.</td>
+    <td>Based on <em>all available knowledge</em>, including subjective and contextual information.</td>
+  </tr>
+
+  <tr>
+    <td><strong>Interpretation of Probability</strong></td>
+    <td>Objective and mathematical — assumes <em>equal likelihood</em> of elementary outcomes.</td>
+    <td>Objective and empirical — probability is an <em>observable property</em> of a repeatable experiment.</td>
+    <td>Subjective — probability quantifies <em>personal uncertainty</em> or <em>belief</em>.</td>
+  </tr>
+
+  <tr>
+    <td><strong>Applicability</strong></td>
+    <td>Works well in <em>games of chance</em> and <em>finite sample spaces</em>.</td>
+    <td>Works well for <em>repeatable random experiments</em>.</td>
+    <td>Works for <em>unique or non-repeatable events</em> (e.g., rain tomorrow, patient has disease).</td>
+  </tr>
+
+  <tr>
+    <td><strong>Main Limitations</strong></td>
+    <td>
+      <ul>
+        <li>Requires assumption of equally likely outcomes.</li>
+        <li>Can involve circular reasoning in defining “chance.”</li>
+      </ul>
+    </td>
+    <td>
+      <ul>
+        <li>True limit \(n \to \infty\) never observed.</li>
+        <li>Requires notion of identical, independent trials.</li>
+      </ul>
+    </td>
+    <td>
+      <ul>
+        <li>Depends on personal judgment and available information.</li>
+        <li>Can vary from person to person.</li>
+      </ul>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Example</strong></td>
+    <td>Probability of getting heads = \(1/2\) when tossing a fair coin.</td>
+    <td>Probability of rain = proportion of rainy days in a long sequence of similar days.</td>
+    <td>Probability of rain = degree of belief, updated with weather reports or personal experience.</td>
+  </tr>
+
+  <tr>
+    <td><strong>Key Figure / Philosophy</strong></td>
+    <td>Laplace’s classical probability.</td>
+    <td>von Mises, Fisher, and the frequentist school.</td>
+    <td>De Finetti, Savage, and the Bayesian school.</td>
+  </tr>
+</tbody>
+
+
+  </table>
+
+  <h2>Conceptual Summary</h2>
+  <p>
+    <strong>Classical:</strong> probability from <em>symmetry</em> → good for dice, cards, and finite sample spaces.
+  </p>
+  <p>
+    <strong>Frequentist:</strong> probability from <em>repetition</em> → good for physical experiments and long-run properties.
+  </p>
+  <p>
+    <strong>Subjective (Bayesian):</strong> probability from <em>beliefs and information</em> → well-suited for unique events and inference where prior knowledge matters.
+  </p>
+</section>
+
 
   </div>
 
