@@ -64,7 +64,7 @@
       <li><a href="#1">1. Foundations of Statistical Paradigms — Information and Uncertainty </a></li>
       <li><a href="#2">2. Interpretations of Probability</a></li>
       <li><a href="#3">3. Illustrative Example — Classical vs Bayesian Reasoning</a></li>
-      <li><a href="#4">4. Concept of Bayesian Expected Loss</a></li>
+      <li><a href="#4">4. Common Statistical Models</a></li>
       <li><a href="#5">5. Solving the Drug Demand Example</a></li>
       <li><a href="#6">6. Frequentist Risk</a></li>
       <li><a href="#7">7. Frequentist Risk in the Drug Demand Problem</a></li>
@@ -78,7 +78,7 @@
     <section>
   <h4>Main Topic: Foundations of Statistical Paradigms — Information and Uncertainty</h4>
 
-  <h4>Subtopics Identified</h4>
+  <h4>Subtopics </h4>
   <ul>
     <li><strong>Concept of Information in Statistics</strong></li>
     <li><strong>Role of Uncertainty and Data</strong></li>
@@ -142,13 +142,12 @@
   </table>
 
   <h4>Visualization (Conceptual Picture)</h4>
-  <p>📊</p>
+ 
   <ul>
     <li><strong>Bayesian:</strong> Starts with a <em>prior</em> belief → collects data → updates to <em>posterior</em>.</li>
   </ul>
   <p>(Prior &rarr; <em>Data</em> (Update) &rarr; Posterior)</p>
 
-  <p>📈</p>
   <ul>
     <li><strong>Frequentist:</strong> Focuses on <em>data-driven inference</em> → repeats sampling mentally to understand variability.</li>
   </ul>
@@ -385,8 +384,8 @@
 <h3>6. Conceptual Visualization</h3>  
 <p>Imagine a tug-of-war between two philosophies:</p>  
 <ul>  
-  <li><b>Frequentist:</b> “Let the data alone speak.” 🧮 (Estimate \( 0.83 \) directly from 5 boys.)</li>  
-  <li><b>Bayesian:</b> “Combine prior belief with data.” 📊 (Prior \( \text{Beta}(2,2) \) leads to posterior mean \( 0.70 \).)</li>  
+  <li><b>Frequentist:</b> “Let the data alone speak.” (Estimate \( 0.83 \) directly from 5 boys.)</li>  
+  <li><b>Bayesian:</b> “Combine prior belief with data.”  (Prior \( \text{Beta}(2,2) \) leads to posterior mean \( 0.70 \).)</li>  
 </ul>  
 
 <h3>7. Interpretive Summary</h3>  
@@ -432,7 +431,77 @@
 
   
   <div class="chapter-section" id="4">
-   
+   <section>  
+<h2>Common Statistical Models</h2>  
+
+<h3>1. Random Sampling Model</h3>  
+<ul>  
+  <li>\( X_1, X_2, \ldots, X_n \) are iid with common density \( f(x; \theta) \).</li>  
+  <li>Parameter \( \theta \) represents unknown characteristics of the population.</li>  
+  <li>Represents the simplest and most general data-generation framework.</li>  
+</ul>  
+<p>Example: Sampling the heights of students to estimate the mean height.</p>  
+<p>🎲 Each observation is an independent draw from the same population curve \( f(x; \theta) \).</p>  
+
+<h3>2. Location Model</h3>  
+<ul>  
+  <li>Model: \( X = \theta + \varepsilon \), where \( \varepsilon \sim f(e) \).</li>  
+  <li>Parameter \( \theta \) is the <b>location parameter</b>.</li>  
+  <li>Shifts the entire distribution horizontally without altering its shape.</li>  
+</ul>  
+<p>Example: Measurement error model \( X_i = \theta + e_i \).</p>  
+<p>📉 The distribution slides left or right as \( \theta \) changes, but shape remains the same.</p>  
+
+<h3>3. Scale Model</h3>  
+<ul>  
+  <li>Model: \( X = \sigma \varepsilon \), where \( \varepsilon \sim f(e) \).</li>  
+  <li>Parameter \( \sigma > 0 \) is the <b>scale parameter</b>.</li>  
+  <li>Controls spread or variability — affects width but not location.</li>  
+</ul>  
+<p>Example: Time-to-failure scaled by device quality \( X_i = \sigma e_i \).</p>  
+<p>🔍 Larger \( \sigma \): wider spread; smaller \( \sigma \): narrower curve centered at 0.</p>  
+
+<h3>4. Location–Scale Model</h3>  
+<ul>  
+  <li>Model: \( X = \theta + \sigma \varepsilon \), where \( \varepsilon \sim f(e) \).</li>  
+  <li>Parameters: \( \theta \) (location), \( \sigma \) (scale).</li>  
+  <li>Combines both translation and scaling effects.</li>  
+</ul>  
+<p>Example: \( X_i \sim N(\theta, \sigma^2) \).</p>  
+<p> Moves and resizes the same “template” density \( f(e) \) to match the observed data’s center and spread.</p>  
+
+<h3>5. Example — Measurement Error Model</h3>  
+<p><b>Setup:</b> \( X_i = \theta + e_i, \; i = 1, \dots, n \), where</p>  
+<ul>  
+  <li>\( \theta \): true value of the measured quantity (unknown),</li>  
+  <li>\( e_i \): random measurement errors, iid with distribution \( F_e \).</li>  
+</ul>  
+<p><b>Joint Density:</b></p>  
+<p>\[ p(x_1, \ldots, x_n \mid \theta) = \prod_{i=1}^n f_e(x_i - \theta) \]</p>  
+<p>This shows that the data depend on \( \theta \) through a simple horizontal shift — hence, a <b>location model</b>.</p>  
+
+<h3>6. Role of Probability Density and Independence</h3>  
+<ul>  
+  <li>The density \( f(x; \theta) \) connects observed data to model parameters.</li>  
+  <li>Independence ensures each observation contributes equally to inference.</li>  
+  <li>This simplifies computation and clarifies the contribution of each data point.</li>  
+</ul>  
+
+<h3>7. Intuitive Visualization</h3>  
+<ul>  
+  <li><b>Location model:</b> Bell curve slides left/right — same shape.</li>  
+  <li><b>Scale model:</b> Bell curve stretches or shrinks — same center.</li>  
+  <li><b>Location–scale model:</b> Bell both shifts and stretches — most general form.</li>  
+</ul>  
+
+<h3>8. Conceptual Summary</h3>  
+<ul>  
+  <li>These models form the building blocks of statistical inference.</li>  
+  <li>The iid assumption ensures uniform contribution of all data points.</li>  
+  <li>Understanding how location and scale parameters affect distributions is key to estimation, testing, and Bayesian analysis.</li>  
+</ul>  
+</section>
+
 
   </div>
 
